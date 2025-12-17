@@ -7,5 +7,8 @@ The format of this change log follows the advice given at [Keep a CHANGELOG](htt
 
 ## [Unreleased]
 
+## [1.0.0] - 2025-12-17
+
 ### Added
+
 - Initial release
