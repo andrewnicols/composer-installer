@@ -1,0 +1,40 @@
+{
+    "name": "moodle/composer-installer",
+    "type": "composer-plugin",
+    "license": "GPL-3.0-or-later",
+    "description": "A Composer Installer Plugin for Moodle",
+    "keywords": [
+        "installer",
+        "composer",
+        "Moodle"
+    ],
+    "autoload": {
+        "psr-4": {
+            "Moodle\\Composer\\": "src/Composer"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Moodle\\Composer\\Test\\": "tests/Composer"
+        }
+    },
+    "extra": {
+        "class": "Moodle\\Composer\\Plugin",
+        "plugin-modifies-install-path": true
+    },
+    "require": {
+        "php": "^8.0",
+        "composer-plugin-api": "^2.0"
+    },
+    "require-dev": {
+        "composer/composer": "^2.7.8",
+        "composer/semver": "^3.4.4",
+        "phpunit/phpunit": "^9.6.20",
+        "phpstan/phpstan": "^2",
+        "phpstan/phpstan-phpunit": "^2"
+    },
+    "scripts": {
+        "test": "@php phpunit",
+        "phpstan": "@php phpstan analyse"
+    }
+}

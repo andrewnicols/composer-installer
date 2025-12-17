@@ -1,0 +1,81 @@
+<?php
+
+namespace Moodle\Composer\DataProviders;
+
+class MoodleData extends \Moodle\Composer\DataProvider
+{
+    /**
+     * {@inheritDoc}
+     */
+    function getData(): array
+    {
+        return [
+            'core'               => '{$prefix}',
+            'aiplacement'        => '{$prefix}{$public}ai/placement/{$name}/',
+            'aiprovider'         => '{$prefix}{$public}ai/provider/{$name}/',
+            'antivirus'          => '{$prefix}{$public}lib/antivirus/{$name}/',
+            'assignfeedback'     => '{$prefix}{$public}mod/assign/feedback/{$name}/',
+            'assignsubmission'   => '{$prefix}{$public}mod/assign/submission/{$name}/',
+            'auth'               => '{$prefix}{$public}auth/{$name}/',
+            'availability'       => '{$prefix}{$public}availability/condition/{$name}/',
+            'bbbext'             => '{$prefix}{$public}mod/bigbluebuttonbn/extension/{$name}/',
+            'block'              => '{$prefix}{$public}blocks/{$name}/',
+            'booktool'           => '{$prefix}{$public}mod/book/tool/{$name}/',
+            'cachelock'          => '{$prefix}{$public}cache/locks/{$name}/',
+            'cachestore'         => '{$prefix}{$public}cache/stores/{$name}/',
+            'calendartype'       => '{$prefix}{$public}calendar/type/{$name}/',
+            'communication'      => '{$prefix}{$public}communication/provider/{$name}/',
+            'contenttype'        => '{$prefix}{$public}contentbank/contenttype/{$name}/',
+            'coursereport'       => '{$prefix}{$public}course/report/{$name}/',
+            'customfield'        => '{$prefix}{$public}customfield/field/{$name}/',
+            'datafield'          => '{$prefix}{$public}mod/data/field/{$name}/',
+            'dataformat'         => '{$prefix}{$public}dataformat/{$name}/',
+            'datapreset'         => '{$prefix}{$public}mod/data/preset/{$name}/',
+            'editor'             => '{$prefix}{$public}lib/editor/{$name}/',
+            'enrol'              => '{$prefix}{$public}enrol/{$name}/',
+            'factor'             => '{$prefix}{$public}admin/tool/mfa/factor/{$name}/',
+            'fileconverter'      => '{$prefix}{$public}files/converter/{$name}/',
+            'filter'             => '{$prefix}{$public}filter/{$name}/',
+            'format'             => '{$prefix}{$public}course/format/{$name}/',
+            'forumreport'        => '{$prefix}{$public}mod/forum/report/{$name}/',
+            'gradeexport'        => '{$prefix}{$public}grade/export/{$name}/',
+            'gradeimport'        => '{$prefix}{$public}grade/import/{$name}/',
+            'gradepenalty'       => '{$prefix}{$public}grade/penalty/{$name}/',
+            'gradereport'        => '{$prefix}{$public}grade/report/{$name}/',
+            'gradingform'        => '{$prefix}{$public}grade/grading/form/{$name}/',
+            'h5plib'             => '{$prefix}{$public}h5p/h5plib/{$name}/',
+            'local'              => '{$prefix}{$public}local/{$name}/',
+            'logstore'           => '{$prefix}{$public}admin/tool/log/store/{$name}/',
+            'ltiservice'         => '{$prefix}{$public}mod/lti/service/{$name}/',
+            'ltisource'          => '{$prefix}{$public}mod/lti/source/{$name}/',
+            'media'              => '{$prefix}{$public}media/player/{$name}/',
+            'message'            => '{$prefix}{$public}message/output/{$name}/',
+            'mlbackend'          => '{$prefix}{$public}lib/mlbackend/{$name}/',
+            'mnetservice'        => '{$prefix}{$public}mnet/service/{$name}/',
+            'mod'                => '{$prefix}{$public}mod/{$name}/',
+            'monitoringexporter' => '{$prefix}{$public}admin/tool/monitoring/exporter/{$name}/',
+            'paygw'              => '{$prefix}{$public}payment/gateway/{$name}/',
+            'plagiarism'         => '{$prefix}{$public}plagiarism/{$name}/',
+            'portfolio'          => '{$prefix}{$public}portfolio/{$name}/',
+            'profilefield'       => '{$prefix}{$public}user/profile/field/{$name}/',
+            'qbank'              => '{$prefix}{$public}question/bank/{$name}/',
+            'qbehaviour'         => '{$prefix}{$public}question/behaviour/{$name}/',
+            'qformat'            => '{$prefix}{$public}question/format/{$name}/',
+            'qtype'              => '{$prefix}{$public}question/type/{$name}/',
+            'quiz'               => '{$prefix}{$public}mod/quiz/report/{$name}/',
+            'quizaccess'         => '{$prefix}{$public}mod/quiz/accessrule/{$name}/',
+            'report'             => '{$prefix}{$public}report/{$name}/',
+            'repository'         => '{$prefix}{$public}repository/{$name}/',
+            'scormreport'        => '{$prefix}{$public}mod/scorm/report/{$name}/',
+            'search'             => '{$prefix}{$public}search/engine/{$name}/',
+            'smsgateway'         => '{$prefix}{$public}sms/gateway/{$name}/',
+            'theme'              => '{$prefix}{$public}theme/{$name}/',
+            'tiny'               => '{$prefix}{$public}lib/editor/tiny/plugins/{$name}/',
+            'tool'               => '{$prefix}{$public}admin/tool/{$name}/',
+            'webservice'         => '{$prefix}{$public}webservice/{$name}/',
+            'workshopallocation' => '{$prefix}{$public}mod/workshop/allocation/{$name}/',
+            'workshopeval'       => '{$prefix}{$public}mod/workshop/eval/{$name}/',
+            'workshopform'       => '{$prefix}{$public}mod/workshop/form/{$name}/',
+        ];
+    }
+}
