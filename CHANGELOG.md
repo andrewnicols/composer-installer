@@ -7,6 +7,8 @@ The format of this change log follows the advice given at [Keep a CHANGELOG](htt
 
 ## [Unreleased]
 
+## [1.1.0] - 2025-12-23
+
 ### Fixed
 
 - Respect root package `haspublicdir` and `install-path` correctly
