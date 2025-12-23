@@ -7,6 +7,11 @@ The format of this change log follows the advice given at [Keep a CHANGELOG](htt
 
 ## [Unreleased]
 
+### Fixed
+
+- Respect root package `haspublicdir` and `install-path` correctly
+- Respect the `haspublicdir` of the installed `moodle/moodle`, rather than the available `moodle/moodle` package.
+
 ## [1.0.0] - 2025-12-17
 
 ### Added

@@ -153,15 +153,21 @@ class MoodleInstaller extends LibraryInstaller
         $rootPackage = $this->composer->getPackage();
 
         $extra = $rootPackage->getExtra();
-        if (empty($extra['install-path'])) {
-            return '';
+        $defaultValue = 'moodle/';
+
+        if (empty($extra)) {
+            return $defaultValue;
+        }
+
+        if (!array_key_exists('install-path', $extra)) {
+            return $defaultValue;
         }
 
         if (!is_string($extra['install-path'])) {
-            return '';
+            return $defaultValue;
         }
 
-        return $extra['install-path'];
+        return ltrim(rtrim($extra['install-path'], '/') . '/', '/');
     }
 
     /**
@@ -171,14 +177,39 @@ class MoodleInstaller extends LibraryInstaller
      */
     protected function getPublicPath(): string
     {
+        // If the root package has the setting, use that.
+        $extra = $this->composer->getPackage()->getExtra();
+        if (array_key_exists('haspublicdir', $extra)) {
+            return $extra['haspublicdir'] ? 'public/' : '';
+        }
+
         // The public directory setting is stored in the main Moodle package's.
         // Legacy Moodle installs do not have this path, or any setting.
-        $moodlePackage = $this->composer->getRepositoryManager()->findPackage(
-            'moodle/moodle',
-            '*'
-        );
-        $extra = $moodlePackage ? $moodlePackage->getExtra() : $this->composer->getPackage()->getExtra();
+        // At the moment there is no way to fetch the list of packages by virtual package, so we must do it this way.
 
-        return !empty($extra['haspublicdir']) ? 'public/' : '';
+        foreach (\Composer\InstalledVersions::getInstalledPackagesByType('moodle-core') as $packageName) {
+            $extra = $this->getExtraForInstalledPackage($packageName);
+            if (array_key_exists('haspublicdir', $extra)) {
+                return $extra['haspublicdir'] ? 'public/' : '';
+            }
+        }
+
+        return '';
+    }
+
+    protected function getExtraForInstalledPackage(string $packageName): array
+    {
+        if (!\Composer\InstalledVersions::isInstalled($packageName)) {
+            return [];
+        }
+
+        $installPath = \Composer\InstalledVersions::getInstallPath($packageName);
+        $composerFile = $installPath . '/composer.json';
+        if (!file_exists($composerFile)) {
+            return [];
+        }
+
+        $composerData = json_decode(file_get_contents($composerFile), true);
+        return $composerData['extra'] ?? [];
     }
 }
