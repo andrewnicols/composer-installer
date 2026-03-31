@@ -43,6 +43,13 @@ class MoodleInstaller extends LibraryInstaller
         $plugintype = substr($type, 7); // Remove 'moodle-' prefix.
 
         if (!isset($this->locations[$plugintype])) {
+            foreach ($package->getRequires() as $name => $require) {
+                $location = $this->getLocationFromRequire($plugintype, $name, $require->getPrettyConstraint());
+                if ($location !== null) {
+                    return $this->getLocation($package, $location);
+                }
+            }
+
             throw new \InvalidArgumentException(
                 "Unable to install package of type {$type}, unknown plugin type {$plugintype}"
             );
@@ -116,6 +123,39 @@ class MoodleInstaller extends LibraryInstaller
         }
 
         return $location;
+    }
+
+    /**
+     * Try to fetch the location from a package requirement.
+     *
+     * @param string $packagetype
+     * @param string $name
+     * @param string $constraint
+     * @return string|null
+     */
+    protected function getLocationFromRequire(
+        string $packagetype,
+        string $name,
+        string $constraint,
+    ): ?string {
+        $dependency = $this->composer->getRepositoryManager()->findPackage($name, $constraint);
+        if (!$dependency) {
+            return null;
+        }
+
+        $extra = $dependency->getExtra();
+        if (!array_key_exists('subplugins', $extra) || !is_array($extra['subplugins'])) {
+            return null;
+        }
+
+        if (!array_key_exists($packagetype, $extra['subplugins']) || !is_string($extra['subplugins'][$packagetype])) {
+            return null;
+        }
+
+        $parentlocation = $this->getInstallPath($dependency);
+        $location = $extra['subplugins'][$packagetype];
+
+        return $parentlocation . '/' . $location;
     }
 
     /**

@@ -7,6 +7,10 @@ The format of this change log follows the advice given at [Keep a CHANGELOG](htt
 
 ## [Unreleased]
 
+### Added
+
+- Support for installing subplugins using metadata located in the dependency's composer.json::extra.
+
 ## [1.2.2] - 2026-03-19
 
 ### Fixed
